@@ -24,9 +24,9 @@ The broader baseball-technology product family around Player Development OS. Cur
 
 An emerging baseball scouting and decision-support workspace inside Rogue Baseball Intelligence. The current build combines and reconciles data from multiple baseball sources, including Statcast / Baseball Savant, FanGraphs, and Baseball-Reference, with source-aware methodology, refresh workflows, diagnostics, and player-comparison views.
 
-### [Cozi for ChatGPT](https://github.com/MichaelJNichols/cozi-calendar-chatgpt)
+### Cozi for ChatGPT
 
-A separate, non-baseball product experiment: a read-only MCP integration that lets ChatGPT query a live Cozi family calendar. The private MVP runs on Cloudflare Workers and exposes deterministic tools for schedules, conflicts, free-time search, and availability summaries while keeping the calendar credential out of source control.
+A separate, non-baseball product experiment: a read-only MCP integration that lets ChatGPT query a live Cozi family calendar. The private MVP runs on Cloudflare Workers and exposes deterministic tools for schedules, conflicts, free-time search, and availability summaries while keeping the calendar credential out of source control. Source remains private; sanitized learnings are reflected in the public portfolio.
 
 ## What I work on
 
@@ -65,7 +65,6 @@ I am advancing Player Development OS through controlled multi-athlete pilot-read
 - [LinkedIn](https://www.linkedin.com/in/mjnichols1/)
 - [Player Development OS Portfolio](https://github.com/MichaelJNichols/player-development-os-portfolio)
 - [Rogue Baseball Intelligence](https://roguebaseballiq.com/)
-- [Cozi for ChatGPT](https://github.com/MichaelJNichols/cozi-calendar-chatgpt)
 
 ---
 
