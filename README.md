@@ -1,24 +1,32 @@
 # Michael J. Nichols
 
-**Operations Leader | AI Product Builder | Founder, Rogue Baseball IQ**
+**Operations Leader | AI Product Builder | Founder, Rogue Baseball Intelligence**
 
 I build practical, AI-assisted products that turn operational complexity into clear workflows, better decisions, and measurable execution.
 
-My background is in large-scale retail leadership, multi-unit operations, product strategy, and business transformation. I am now applying that experience to product development—identifying real problems, designing end-to-end workflows, documenting tradeoffs, and building working systems.
+My background is in large-scale retail leadership, multi-unit operations, product strategy, and business transformation. I am applying that experience to product development—identifying real problems, designing end-to-end workflows, documenting tradeoffs, building working systems, and operating them through testing, evidence, and iteration.
 
 ## Featured work
 
 ### [Player Development OS — Product Portfolio](https://github.com/MichaelJNichols/player-development-os-portfolio)
 
-A public, privacy-safe portfolio documenting the discovery, design, roadmap, product decisions, safety controls, AI-assisted development process, and evolution of Player Development OS.
+My primary product-management case study: a working baseball athlete-development platform built around calendar-aware daily planning, workload and readiness controls, coach workflows, athlete engagement, and a controlled path from a single-athlete product toward multi-athlete pilots.
 
 ### [Player Development OS — Public Demo](https://player-development-os.nikolz78.chatgpt.site/)
 
-A synthetic demonstration of an athlete-development workflow platform that combines calendar-aware planning, readiness, workload safeguards, coach workflows, and progress tracking.
+A synthetic, privacy-safe demonstration of the athlete and coach experience. The public demo is deliberately separated from private production data and real youth records.
 
-### [Rogue Baseball IQ](https://roguebaseballiq.com/)
+### [Rogue Baseball Intelligence](https://roguebaseballiq.com/)
 
-An early-stage baseball technology venture focused on practical systems for player development, coaching workflows, and athlete decision support.
+The broader baseball-technology product family around Player Development OS. Current work includes the public product site, shared product infrastructure, voluntary Stripe-hosted development support, and additional baseball workflow experiments.
+
+### Scouting Notebook
+
+An emerging baseball scouting and decision-support workspace inside Rogue Baseball Intelligence. The current build combines and reconciles data from multiple baseball sources, including Statcast / Baseball Savant, FanGraphs, and Baseball-Reference, with source-aware methodology, refresh workflows, diagnostics, and player-comparison views.
+
+### [Cozi for ChatGPT](https://github.com/MichaelJNichols/cozi-calendar-chatgpt)
+
+A separate, non-baseball product experiment: a read-only MCP integration that lets ChatGPT query a live Cozi family calendar. The private MVP runs on Cloudflare Workers and exposes deterministic tools for schedules, conflicts, free-time search, and availability summaries while keeping the calendar credential out of source control.
 
 ## What I work on
 
@@ -26,6 +34,8 @@ An early-stage baseball technology venture focused on practical systems for play
 - Product strategy and roadmap design
 - Workflow and interaction design
 - Operations transformation
+- Multi-source data products and decision support
+- MCP, API, and third-party integrations
 - Product documentation and decision records
 - Safety, privacy, and responsible youth-data practices
 - Pilot design, feedback loops, and commercialization planning
@@ -48,14 +58,15 @@ User feedback and iteration
 
 ## Current focus
 
-I am continuing to develop Player Development OS toward multi-athlete, guardian, and coach workflows while building a public body of evidence around product judgment, systems thinking, and AI-assisted execution.
+I am advancing Player Development OS through controlled multi-athlete pilot-readiness gates while expanding Rogue Baseball Intelligence into a broader set of baseball products and data workflows. In parallel, I use smaller integrations such as Cozi for ChatGPT to explore reusable patterns in MCP tooling, external data, deployment, evaluation, and AI-assisted product development.
 
 ## Connect
 
 - [LinkedIn](https://www.linkedin.com/in/mjnichols1/)
 - [Player Development OS Portfolio](https://github.com/MichaelJNichols/player-development-os-portfolio)
-- [Rogue Baseball IQ](https://roguebaseballiq.com/)
+- [Rogue Baseball Intelligence](https://roguebaseballiq.com/)
+- [Cozi for ChatGPT](https://github.com/MichaelJNichols/cozi-calendar-chatgpt)
 
 ---
 
-*The public repositories and demonstrations linked here use sanitized or synthetic information. Private youth-athlete data and production records are not published.*
+*Public repositories and demonstrations linked here use sanitized, synthetic, or permission-safe information. Private youth-athlete data, family-calendar credentials, production records, and private product source are not published.*
