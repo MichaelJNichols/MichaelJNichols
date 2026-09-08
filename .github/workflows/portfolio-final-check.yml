@@ -1,0 +1,117 @@
+name: Published portfolio final check
+on:
+  push:
+    branches: [portfolio/finish-2026-09-08]
+    paths: [.github/workflows/portfolio-final-check.yml]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Recheck exact public source and saved data
+        env:
+          MPLBACKEND: Agg
+        working-directory: projects/mlb-pythagorean-expectation
+        run: |
+          python -m pip install -r requirements.txt
+          python -m unittest -v test_analysis.py
+          python reproduce.py
+          cmp data/mlb_pythagorean_2025.csv output/mlb_pythagorean_2025.csv
+          test "$(git hash-object analyze.py)" = f5b448b30484369002fe2b4dd589b61893dc08f6
+          test "$(git hash-object data/mlb_pythagorean_2025.csv)" = 065930cfaa85c97fe227fa7c50ccdcf0cbd33318
+      - name: Check local Markdown targets and published-file boundaries
+        run: |
+          python - <<'PY'
+          import re, subprocess
+          from pathlib import Path
+          from urllib.parse import unquote, urlsplit
+          root=Path('.').resolve()
+          files=[Path(p) for p in subprocess.check_output(['git','ls-files'],text=True).splitlines()]
+          checked=0
+          for path in files:
+            if path.suffix!='.md': continue
+            text=path.read_text()
+            targets=re.findall(r'\]\(([^)]+)\)',text)+re.findall(r'(?:href|src)="([^"]+)"',text)
+            for target in targets:
+              u=urlsplit(target)
+              if u.scheme or u.netloc or not u.path:continue
+              resolved=(path.parent/unquote(u.path)).resolve()
+              assert resolved.is_relative_to(root), (path,target)
+              assert resolved.exists(), (path,target)
+              checked+=1
+          for p in files:
+            if p.suffix in {'.py','.csv','.md','.json','.txt'}:
+              text=p.read_text()
+              assert not re.search(r'\b(?:ghp_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{40,}|sk-proj-[A-Za-z0-9_-]{30,})',text), p
+          print(f'Checked {checked} relative Markdown/image targets and scoped credential patterns.')
+          PY
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated presentation-check tools
+        run: |
+          npm install --prefix "$RUNNER_TEMP/portfolio-tools" --no-package-lock playwright@1.55.0
+          "$RUNNER_TEMP/portfolio-tools/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Inspect the published GitHub pages anonymously
+        env:
+          PREVIEW_TOOLS: ${{ runner.temp }}/portfolio-tools
+        run: |
+          node --input-type=module <<'JS'
+          import {mkdir,writeFile} from 'node:fs/promises';
+          import {pathToFileURL} from 'node:url';
+          const {chromium}=await import(pathToFileURL(process.env.PREVIEW_TOOLS+'/node_modules/playwright/index.mjs'));
+          await mkdir('artifacts/final-review',{recursive:true});
+          const report={checkedAt:new Date().toISOString(),anonymous:true,pages:[],publicFiles:[]};
+          const browser=await chromium.launch();
+          for(const [name,url] of [
+            ['profile','https://github.com/MichaelJNichols'],
+            ['pdos-portfolio','https://github.com/MichaelJNichols/player-development-os-portfolio'],
+            ['python-project','https://github.com/MichaelJNichols/MichaelJNichols/tree/main/projects/mlb-pythagorean-expectation']
+          ]) {
+            const context=await browser.newContext({viewport:{width:1440,height:1000}});
+            const page=await context.newPage(); const r={name,url};
+            try{
+              const response=await page.goto(url,{waitUntil:'domcontentloaded',timeout:45000});r.status=response?.status();
+              await page.locator('.markdown-body').first().waitFor({timeout:30000});
+              await page.locator('.markdown-body img').evaluateAll(imgs=>imgs.forEach(img=>img.loading='eager'));
+              await page.waitForTimeout(7000);
+              r.title=await page.title();
+              r.links=await page.locator('.markdown-body a').evaluateAll(els=>els.map(e=>({text:e.innerText,href:e.href})));
+              r.images=await page.locator('.markdown-body img').evaluateAll(els=>els.map(e=>({alt:e.alt,loaded:e.complete&&e.naturalWidth>0,src:e.src})));
+              await page.screenshot({path:`artifacts/final-review/${name}-desktop.png`,fullPage:true});
+              await page.setViewportSize({width:390,height:844});await page.evaluate(()=>scrollTo(0,0));await page.waitForTimeout(2000);
+              r.mobileOverflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1);
+              r.markdownOverflow=await page.locator('.markdown-body').first().evaluate(e=>e.scrollWidth>e.clientWidth+1);
+              await page.screenshot({path:`artifacts/final-review/${name}-mobile.png`,fullPage:true});
+              if(name==='profile'){
+                r.pdosLink=r.links.some(l=>l.text==='PDOS demo'&&l.href==='https://demo.roguebaseballiq.com/');
+                r.notebookLink=r.links.some(l=>l.text==='Scouting Notebook demo'&&l.href==='https://roguebaseballiq.com/scouting-demo/');
+              }
+            }catch(e){r.error=String(e).slice(0,1500)}
+            report.pages.push(r);await context.close();
+          }
+          await browser.close();
+          const base='https://raw.githubusercontent.com/MichaelJNichols/MichaelJNichols/main/';
+          for(const path of ['assets/pdos-preview.png','assets/scouting-preview.png','projects/mlb-pythagorean-expectation/analyze.py','projects/mlb-pythagorean-expectation/data/mlb_pythagorean_2025.csv','projects/mlb-pythagorean-expectation/charts/mlb_pythagorean_2025.png']){
+            try{const r=await fetch(base+path,{signal:AbortSignal.timeout(30000)});report.publicFiles.push({path,status:r.status,bytes:(await r.arrayBuffer()).byteLength})}
+            catch(e){report.publicFiles.push({path,error:String(e)})}
+          }
+          await writeFile('artifacts/final-review/report.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+          if(report.pages.some(p=>p.error||p.status!==200||p.images?.some(i=>!i.loaded)||p.pdosLink===false||p.notebookLink===false)||report.publicFiles.some(p=>p.status!==200))process.exitCode=1;
+          JS
+      - name: Retain rendering and link evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: published-portfolio-final-review
+          path: artifacts/final-review
+          retention-days: 14
+          if-no-files-found: warn
