@@ -1,50 +1,29 @@
 # Cozi for ChatGPT
 
-### A small integration built around a real coordination problem.
+### Ask the calendar a useful question.
 
-**Workflow automation · MCP tooling · Deterministic calendar logic**  
-**Updated September 8, 2026 · Private deployed MVP**
+**Workflow automation · MCP integration · Deterministic calendar logic**
 
 [Back to profile](../README.md)
 
-## The job to be done
+A family calendar already contained the information needed to answer questions about schedules, overlapping events, and shared free time. The friction was reconciling it manually.
 
-A family calendar already contained the information needed to answer questions about schedules, overlapping events, and free time. The friction was repeatedly inspecting and reconciling that information by hand.
+I built an unofficial, read-only integration that exposes a Cozi iCalendar feed through a Cloudflare Worker and structured Model Context Protocol tools.
 
-I built an unofficial, read-only integration that lets ChatGPT query a Cozi iCalendar feed through a Cloudflare Worker and structured Model Context Protocol (MCP) tools.
+## Seven focused tools
 
-## Seven tools, one focused boundary
+The integration lists participants and events, finds a person's next event, searches event details, detects conflicts, finds shared open windows, and summarizes availability without double-counting overlaps.
 
-| Tool category | Supported question |
-|---|---|
-| Family members | Who is represented in the calendar? |
-| Events | What is scheduled within a date range? |
-| Next event | What is the next event for a person? |
-| Search | Which events match a title, place, or description? |
-| Conflicts | Which events overlap? |
-| Free time | Where is a shared open window? |
-| Availability summary | How does busy/free time compare without double-counting overlaps? |
+The calendar engine handles timed and all-day events, recurrence, exclusions, participant prefixes, and time zones.
 
-The calendar engine handles timed and all-day events, recurrence rules, exclusions, participant prefixes, timezone-aware output, and overlapping-event unions.
+**Calendar feed → Fetch and parse → Deterministic calculation → Conversational answer**
 
-## The design choice
+The language interface makes questions easier to ask; the tool layer performs the calculations. Reading the calendar was sufficient for the initial use case, so the integration did not need permission to add, delete, or reschedule events.
 
-**Calendar feed → Fetch and parse → Deterministic tools → Conversational answer**
+## Delivery and contribution
 
-The language interface makes questions easier to ask. The tool layer performs the calendar calculations. The integration does not need permission to add, delete, or reschedule events to solve its initial use case.
+The deployed private MVP passed retained end-to-end validation on August 11, 2026 across schedules, next-event lookup, conflicts, shared free time, and availability comparisons.
 
-Keeping the first version read-only reduced the consequence of a mistaken interpretation and made the acceptance questions concrete.
+I defined the problem, tool boundaries, expected answers, and test scenarios, and directed AI-assisted implementation and deployment. The transferable pattern is to expose the minimum useful capability, keep calculations testable, and validate the actual user question.
 
-## Validation and release boundary
-
-The private MVP's retained August 11, 2026 validation covered schedule queries, next-event lookup, person-specific schedules, conflict detection, shared free-time search, and availability comparisons.
-
-That is private end-to-end validation—not public-release approval. Per-user connection/authentication, onboarding, and privacy work remain requirements before a broader release. The calendar feed is treated as a credential; neither it nor real calendar contents are published in this case study.
-
-## My contribution and the transferable value
-
-I defined the practical problem, the tool boundaries, the expected answers, and the test scenarios, and directed AI-assisted implementation and deployment.
-
-The relevant product pattern extends beyond a family calendar: expose the minimum useful capability, keep calculations testable, protect the underlying data, and validate the actual user question rather than merely demonstrating that an API responds.
-
-*Evidence basis: the private implementation README and its retained validation record. Source and live calendar access remain private. This is an independent, unofficial integration, not an endorsement by Cozi or OpenAI.*
+*Private MVP, not a public integration release. Per-user authentication, onboarding, and privacy work remain prerequisites for broader distribution. Source, calendar contents, and feed credentials remain private. Independent and unofficial; not endorsed by Cozi or OpenAI.*

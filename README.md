@@ -1,48 +1,52 @@
 # Michael J. Nichols
 
-### Operations leadership. Product delivery. Baseball intelligence.
+**Operations leadership · Product delivery · Baseball intelligence**
 
-**Multi-unit operations leader at Best Buy · MBA · Founder, Rogue Baseball Intelligence**
+I build systems that turn complex plans and scattered data into useful decisions. My foundation is **multi-unit leadership at Best Buy and an MBA**. As the founder of **Rogue Baseball Intelligence**, I apply that experience to athlete development, scouting support, and practical workflow automation.
 
-I turn complex operating problems into clear workflows and working products.
+**[PDOS demo](https://demo.roguebaseballiq.com/) · [Scouting Notebook demo](https://roguebaseballiq.com/scouting-demo/) · [Python project](projects/mlb-pythagorean-expectation/) · [LinkedIn](https://www.linkedin.com/in/mjnichols1/)**
 
-My foundation is leading people and execution in large-scale retail operations. Through Rogue Baseball Intelligence and independent projects, I apply that experience to product discovery, baseball decision support, practical automation, and data analysis. The common thread is making information useful at the moment someone needs to act.
+## Working products
 
-[LinkedIn](https://www.linkedin.com/in/mjnichols1/) · [PDOS demo](https://demo.roguebaseballiq.com/) · [Scouting Notebook demo](https://roguebaseballiq.com/scouting-demo/) · [Product portfolio](https://github.com/MichaelJNichols/player-development-os-portfolio) · [Rogue Baseball Intelligence](https://roguebaseballiq.com/)
+<table>
+<tr>
+<td width="50%" valign="top">
+<h3>Player Development OS</h3>
+<a href="https://demo.roguebaseballiq.com/"><img src="assets/pdos-preview.png" alt="Actual PDOS synthetic demo: the daily assignment beside readiness and workload controls" width="100%"></a>
+<p><strong>Make a season-long plan usable today.</strong> Connect team schedules, actual workload, daily assignments, and coach review.</p>
+<p><a href="https://demo.roguebaseballiq.com/">Open demo</a> · <a href="https://github.com/MichaelJNichols/player-development-os-portfolio/blob/main/docs/CASE-STUDY.md">Read case study</a></p>
+</td>
+<td width="50%" valign="top">
+<h3>Scouting Notebook</h3>
+<a href="https://roguebaseballiq.com/scouting-demo/"><img src="assets/scouting-preview.png" alt="Actual Scouting Notebook public report: field observations alongside level-specific statistics" width="100%"></a>
+<p><strong>Connect the field look to the evidence.</strong> Separate observation, interpretation, projection, and confidence; check role- and level-appropriate data.</p>
+<p><a href="https://roguebaseballiq.com/scouting-demo/">Open demo</a> · <a href="work/scouting-notebook.md">Explore the product decisions</a></p>
+</td>
+</tr>
+</table>
+
+*Actual public-demo captures, September 8, 2026. [View larger screenshots and context.](work/product-previews.md)*
+
+## Analysis you can inspect
+
+**[Baseball Analytics Lab — MLB Pythagorean Expectation](projects/mlb-pythagorean-expectation/)**  
+A complete Python example comparing all 30 teams' 2025 records with run-based expected wins. Includes the original analysis script, retained data, chart, and an offline reproduction path.
+
+[Read the Python](projects/mlb-pythagorean-expectation/analyze.py) · [Inspect the data](projects/mlb-pythagorean-expectation/data/mlb_pythagorean_2025.csv) · [See the chart](projects/mlb-pythagorean-expectation/charts/mlb_pythagorean_2025.png)
+
+## Beyond baseball
+
+**[Cozi for ChatGPT](work/cozi-calendar-integration.md)** connects a private family calendar to seven read-only tools for schedules, conflicts, shared free time, and availability. A deployed example of turning an everyday coordination problem into a focused integration.
+
+## What I bring
+
+I lead problem definition, workflow design, prioritization, and acceptance, using AI-assisted development to implement and iterate. These projects connect the operating discipline of my leadership career with hands-on product and data work.
+
+**Baseball:** development systems, scouting support, operations, and video/data workflows.  
+**Business and technology:** product operations, program delivery, operational transformation, and practical AI adoption.
+
+[Product-management portfolio](https://github.com/MichaelJNichols/player-development-os-portfolio) · [Rogue Baseball Intelligence](https://roguebaseballiq.com/) · [Connect on LinkedIn](https://www.linkedin.com/in/mjnichols1/)
 
 ---
 
-## Start with the work
-
-| Project | What to inspect |
-|---|---|
-| **[Player Development OS](https://github.com/MichaelJNichols/player-development-os-portfolio)** | A season-long baseball plan translated into daily assignments, actual-work logging, workload-aware adjustments, and coach review. Working single-athlete product; multi-athlete expansion in synthetic staging. **[Open demo →](https://demo.roguebaseballiq.com/)** · **[Case study →](https://github.com/MichaelJNichols/player-development-os-portfolio/blob/main/docs/CASE-STUDY.md)** |
-| **[Scouting Notebook](https://roguebaseballiq.com/scouting-demo/)** | A working public demo and private evaluator workspace connecting observation, projection, confidence, and role/level-aware MLB and MiLB data. **[Product and data decisions →](https://github.com/MichaelJNichols/MichaelJNichols/blob/main/work/scouting-notebook.md)** |
-| **[Baseball Analytics Lab](https://github.com/MichaelJNichols/MichaelJNichols/blob/main/work/baseball-analytics.md)** | Completed Python analysis comparing all 30 MLB teams' 2025 records with run-based expected wins. API retrieval, pandas transformations, CSV output, visualization, and explicit limitations. **Public write-up; source remains private.** |
-| **[Cozi for ChatGPT](https://github.com/MichaelJNichols/MichaelJNichols/blob/main/work/cozi-calendar-integration.md)** | A deployed private integration with seven read-only calendar tools: schedules, search, conflicts, free time, and availability. A practical example outside baseball. **Private MVP; not a public release.** |
-
-## Recent delivery worth a closer look
-
-**From manual checks to repeatable acceptance.** Player Development OS passed a deployed, synthetic browser journey on September 4, 2026: seven role/access cases, a coach-reviewed recovery sequence, and completed test-record cleanup. [Inspect the sanitized evidence.](https://github.com/MichaelJNichols/player-development-os-portfolio/blob/main/docs/RELEASE-EVIDENCE.md)
-
-**From data retrieval to operating a data product.** Scouting work now includes validation, source-aware coverage, scheduled refreshes, bounded recovery, and incident escalation—not just a dashboard that assumes the feed is correct. [Read the tradeoffs.](https://github.com/MichaelJNichols/MichaelJNichols/blob/main/work/scouting-notebook.md)
-
-## Where this experience fits
-
-**Baseball organizations:** baseball operations, player-development systems, scouting support, video/data workflows, and the translation of analysis into coaching or evaluation decisions.
-
-**Product and business teams:** product operations, program delivery, workflow design, operational transformation, and practical AI adoption. My Best Buy leadership experience is the foundation; these projects provide additional evidence of how I define problems, prioritize work, and deliver usable systems.
-
-## How I work
-
-**Understand the user → Define the decision → Build the workflow → Test the behavior → Learn from use**
-
-I own product direction, requirements, priorities, acceptance criteria, and release decisions. AI supports implementation, analysis, testing, and documentation. I distinguish working capability from staged work, and a passing test from a validated business outcome.
-
-Technical work across these projects includes **Python, pandas, matplotlib, public APIs, MCP integrations, Cloudflare Workers/D1, GitHub Actions, and Playwright**. I am building technical depth through applied projects, with emphasis on explaining the methods and checking the results.
-
----
-
-**Current focus:** controlled multi-athlete pilot preparation, stronger baseball evaluation workflows, and additional reproducible analysis.
-
-*Updated September 8, 2026. Public materials use synthetic, sanitized, or public professional-baseball information. Private application source, youth records, family calendars, and credentials remain private. These are independent projects, not products or endorsements of Best Buy or MLB.*
+*Updated September 8, 2026. Independent projects. Public materials use synthetic or public baseball data; private application source and personal records remain private. PDOS multi-athlete work is in staging, not a commercial launch.*
