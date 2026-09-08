@@ -8,7 +8,7 @@ I turn complex operating problems into clear workflows and working products.
 
 My foundation is leading people and execution in large-scale retail operations. Through Rogue Baseball Intelligence and independent projects, I apply that experience to product discovery, baseball decision support, practical automation, and data analysis. The common thread is making information useful at the moment someone needs to act.
 
-[LinkedIn](https://www.linkedin.com/in/mjnichols1/) · [Product portfolio](https://github.com/MichaelJNichols/player-development-os-portfolio) · [Scouting demo](https://roguebaseballiq.com/scouting-demo/) · [Rogue Baseball Intelligence](https://roguebaseballiq.com/)
+[LinkedIn](https://www.linkedin.com/in/mjnichols1/) · [PDOS demo](https://demo.roguebaseballiq.com/) · [Scouting Notebook demo](https://roguebaseballiq.com/scouting-demo/) · [Product portfolio](https://github.com/MichaelJNichols/player-development-os-portfolio) · [Rogue Baseball Intelligence](https://roguebaseballiq.com/)
 
 ---
 
@@ -16,7 +16,7 @@ My foundation is leading people and execution in large-scale retail operations. 
 
 | Project | What to inspect |
 |---|---|
-| **[Player Development OS](https://github.com/MichaelJNichols/player-development-os-portfolio)** | A season-long baseball plan translated into daily assignments, actual-work logging, workload-aware adjustments, and coach review. Working single-athlete product; multi-athlete expansion in synthetic staging. **[Case study →](https://github.com/MichaelJNichols/player-development-os-portfolio/blob/main/docs/CASE-STUDY.md)** |
+| **[Player Development OS](https://github.com/MichaelJNichols/player-development-os-portfolio)** | A season-long baseball plan translated into daily assignments, actual-work logging, workload-aware adjustments, and coach review. Working single-athlete product; multi-athlete expansion in synthetic staging. **[Open demo →](https://demo.roguebaseballiq.com/)** · **[Case study →](https://github.com/MichaelJNichols/player-development-os-portfolio/blob/main/docs/CASE-STUDY.md)** |
 | **[Scouting Notebook](https://roguebaseballiq.com/scouting-demo/)** | A working public demo and private evaluator workspace connecting observation, projection, confidence, and role/level-aware MLB and MiLB data. **[Product and data decisions →](https://github.com/MichaelJNichols/MichaelJNichols/blob/main/work/scouting-notebook.md)** |
 | **[Baseball Analytics Lab](https://github.com/MichaelJNichols/MichaelJNichols/blob/main/work/baseball-analytics.md)** | Completed Python analysis comparing all 30 MLB teams' 2025 records with run-based expected wins. API retrieval, pandas transformations, CSV output, visualization, and explicit limitations. **Public write-up; source remains private.** |
 | **[Cozi for ChatGPT](https://github.com/MichaelJNichols/MichaelJNichols/blob/main/work/cozi-calendar-integration.md)** | A deployed private integration with seven read-only calendar tools: schedules, search, conflicts, free time, and availability. A practical example outside baseball. **Private MVP; not a public release.** |
