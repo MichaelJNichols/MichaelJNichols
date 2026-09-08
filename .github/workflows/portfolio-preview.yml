@@ -20,7 +20,7 @@ jobs:
         run: |
           npm install --prefix "$RUNNER_TEMP/portfolio-tools" --no-package-lock playwright@1.55.0
           "$RUNNER_TEMP/portfolio-tools/node_modules/.bin/playwright" install --with-deps chromium
-      - name: Inspect only public anonymous demo pages
+      - name: Inspect public pages and built-in synthetic demo entry paths
         env:
           PREVIEW_TOOLS: ${{ runner.temp }}/portfolio-tools
         run: |
@@ -31,35 +31,41 @@ jobs:
           await mkdir('artifacts/public-preview', {recursive:true});
           const browser = await chromium.launch();
           const targets = [
-            ['pdos-branded','https://demo.roguebaseballiq.com/'],
-            ['pdos-original','https://player-development-os.nikolz78.chatgpt.site/'],
-            ['scouting','https://roguebaseballiq.com/scouting-demo/']
+            ['pdos-branded','https://demo.roguebaseballiq.com/',null],
+            ['scouting','https://roguebaseballiq.com/scouting-demo/',null],
+            ['pdos-coach','https://demo.roguebaseballiq.com/','Explore coach view'],
+            ['pdos-athlete','https://demo.roguebaseballiq.com/','Explore player view']
           ];
-          const report = {checkedAt:new Date().toISOString(), anonymous:true, scope:'public navigation and screenshots only; no sign-in or form submission', results:[]};
-          for (const [name,url] of targets) {
+          const report = {checkedAt:new Date().toISOString(), scope:'public pages and built-in synthetic demo entry only; no personal credentials, training writes, or private staging access', results:[]};
+          for (const [name,url,entry] of targets) {
             const context = await browser.newContext({viewport:{width:1440,height:1000},deviceScaleFactor:1});
             const page = await context.newPage();
             const result = {name,url};
             try {
               const response = await page.goto(url,{waitUntil:'domcontentloaded',timeout:45000});
-              await page.waitForTimeout(8000);
-              result.status=response?.status(); result.finalUrl=page.url(); result.title=await page.title();
-              result.visibleText=(await page.locator('body').innerText()).slice(0,18000);
+              await page.waitForTimeout(5000);
+              result.status=response?.status();
+              if (entry) {
+                await page.getByText(entry,{exact:true}).click({timeout:20000});
+                await page.waitForTimeout(8000);
+              }
+              result.finalUrl=page.url(); result.title=await page.title();
+              result.visibleText=(await page.locator('body').innerText()).slice(0,22000);
+              result.entryLeftWelcome=entry ? !(await page.getByText(entry,{exact:true}).count()) : null;
               await page.screenshot({path:`artifacts/public-preview/${name}-desktop.png`,fullPage:true});
-              result.desktopScreenshot=`${name}-desktop.png`;
               await page.setViewportSize({width:390,height:844});
               await page.waitForTimeout(1500);
               result.mobileHorizontalOverflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1);
               await page.screenshot({path:`artifacts/public-preview/${name}-mobile.png`,fullPage:true});
-              result.mobileScreenshot=`${name}-mobile.png`;
             } catch (error) { result.error=String(error).slice(0,1500); }
             report.results.push(result); await context.close();
           }
           await browser.close();
           await writeFile('artifacts/public-preview/report.json',JSON.stringify(report,null,2));
           console.log(JSON.stringify(report,null,2));
+          if(report.results.some(r=>r.error || r.status!==200 || r.entryLeftWelcome===false)) process.exitCode=1;
           JS
-      - name: Retain anonymous captures for review, not automatic publication
+      - name: Retain captures for review, not automatic publication
         if: always()
         uses: actions/upload-artifact@v4
         with:
