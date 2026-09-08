@@ -1,0 +1,69 @@
+name: Public portfolio preview check
+on:
+  push:
+    branches: [portfolio/finish-2026-09-08]
+    paths: [.github/workflows/portfolio-preview.yml]
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated browser tooling
+        run: |
+          npm install --prefix "$RUNNER_TEMP/portfolio-tools" --no-package-lock playwright@1.55.0
+          "$RUNNER_TEMP/portfolio-tools/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Inspect only public anonymous demo pages
+        env:
+          PREVIEW_TOOLS: ${{ runner.temp }}/portfolio-tools
+        run: |
+          node --input-type=module <<'JS'
+          import {mkdir, writeFile} from 'node:fs/promises';
+          import {pathToFileURL} from 'node:url';
+          const {chromium} = await import(pathToFileURL(process.env.PREVIEW_TOOLS + '/node_modules/playwright/index.mjs'));
+          await mkdir('artifacts/public-preview', {recursive:true});
+          const browser = await chromium.launch();
+          const targets = [
+            ['pdos-branded','https://demo.roguebaseballiq.com/'],
+            ['pdos-original','https://player-development-os.nikolz78.chatgpt.site/'],
+            ['scouting','https://roguebaseballiq.com/scouting-demo/']
+          ];
+          const report = {checkedAt:new Date().toISOString(), anonymous:true, scope:'public navigation and screenshots only; no sign-in or form submission', results:[]};
+          for (const [name,url] of targets) {
+            const context = await browser.newContext({viewport:{width:1440,height:1000},deviceScaleFactor:1});
+            const page = await context.newPage();
+            const result = {name,url};
+            try {
+              const response = await page.goto(url,{waitUntil:'domcontentloaded',timeout:45000});
+              await page.waitForTimeout(8000);
+              result.status=response?.status(); result.finalUrl=page.url(); result.title=await page.title();
+              result.visibleText=(await page.locator('body').innerText()).slice(0,18000);
+              await page.screenshot({path:`artifacts/public-preview/${name}-desktop.png`,fullPage:true});
+              result.desktopScreenshot=`${name}-desktop.png`;
+              await page.setViewportSize({width:390,height:844});
+              await page.waitForTimeout(1500);
+              result.mobileHorizontalOverflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1);
+              await page.screenshot({path:`artifacts/public-preview/${name}-mobile.png`,fullPage:true});
+              result.mobileScreenshot=`${name}-mobile.png`;
+            } catch (error) { result.error=String(error).slice(0,1500); }
+            report.results.push(result); await context.close();
+          }
+          await browser.close();
+          await writeFile('artifacts/public-preview/report.json',JSON.stringify(report,null,2));
+          console.log(JSON.stringify(report,null,2));
+          JS
+      - name: Retain anonymous captures for review, not automatic publication
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-portfolio-preview
+          path: artifacts/public-preview
+          retention-days: 14
+          if-no-files-found: error
