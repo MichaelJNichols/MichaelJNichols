@@ -1,0 +1,74 @@
+name: Publish reviewed portfolio assets
+on:
+  push:
+    branches: [portfolio/finish-2026-09-08]
+    paths: [.github/workflows/publish-reviewed-assets.yml]
+permissions:
+  contents: write
+  actions: read
+jobs:
+  assets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.ref }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install reviewed analysis and image dependencies
+        run: python -m pip install -r projects/mlb-pythagorean-expectation/requirements.txt pillow==11.3.0
+      - name: Retrieve the exact reviewed public capture
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh run download 34262263630 --repo MichaelJNichols/MichaelJNichols --name public-portfolio-preview --dir "$RUNNER_TEMP/reviewed-capture"
+      - name: Verify reviewed bytes and generate approved crops
+        run: |
+          python - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          from PIL import Image
+          src=Path(os.environ['RUNNER_TEMP'])/'reviewed-capture'
+          hashes={
+            'pdos-coach-desktop.png':'552d65d0ea092c9bbe3264d849fe0df243155974bc5375654479f284b425bdee',
+            'pdos-athlete-desktop.png':'8f28d194c814f674b93968ab30929f71e48a438f3b6276275f45f33a0c1ea486',
+            'scouting-desktop.png':'bb7279a3a342d9ae5c3e5df12fab65ad18a9dd9848eab48c46cf7f28d1b0325b'
+          }
+          for name,expected in hashes.items():
+            assert hashlib.sha256((src/name).read_bytes()).hexdigest()==expected, name
+          report=json.loads((src/'report.json').read_text())
+          assert all(r.get('status')==200 and not r.get('error') and r.get('entryLeftWelcome') is not False for r in report['results'])
+          items={
+            'pdos-preview.png':('pdos-coach-desktop.png',(105,941,1335,1748)),
+            'scouting-preview.png':('scouting-desktop.png',(59,1031,1381,1898)),
+            'pdos-coach-detail.png':('pdos-coach-desktop.png',(105,350,1335,1980)),
+            'pdos-athlete-detail.png':('pdos-athlete-desktop.png',(105,350,1335,2200)),
+            'scouting-report-detail.png':('scouting-desktop.png',(59,1031,1381,2280))
+          }
+          Path('assets').mkdir(exist_ok=True)
+          for name,(source,box) in items.items():
+            im=Image.open(src/source).crop(box)
+            im.thumbnail((1322,1900))
+            im.save(Path('assets')/name,optimize=True)
+          PY
+      - name: Test and reproduce the retained analysis without API access
+        working-directory: projects/mlb-pythagorean-expectation
+        run: |
+          python -m unittest -v test_analysis.py
+          python reproduce.py
+          cmp data/mlb_pythagorean_2025.csv output/mlb_pythagorean_2025.csv
+          mkdir -p charts
+          cp output/mlb_pythagorean_2025.png charts/mlb_pythagorean_2025.png
+      - name: Commit only approved image files to the review branch
+        run: |
+          git add assets/pdos-preview.png assets/scouting-preview.png assets/pdos-coach-detail.png assets/pdos-athlete-detail.png assets/scouting-report-detail.png projects/mlb-pythagorean-expectation/charts/mlb_pythagorean_2025.png
+          git diff --cached --stat
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add reviewed real product screenshots and reproducible analysis chart'
+            git push origin HEAD:portfolio/finish-2026-09-08
+          fi
