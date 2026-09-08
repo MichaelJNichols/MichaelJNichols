@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-09-08",
+  "scope": "Public GitHub portfolio presentation and allowlisted baseball-analysis publication. No private application deployment or repository-visibility change.",
+  "tested_profile_content_commit": "51ce9da9bce5e133db31d42e5e2b8c0c311697b8",
+  "tested_pdos_portfolio_commit": "0a5f7dfbfecdb7ea595720cb24a9c6c458eccad1",
+  "public_demo_check": {
+    "run_id": 34262263630,
+    "checked_at_utc": "2026-09-08T18:19:04.011Z",
+    "pdos_branded_welcome_http_status": 200,
+    "pdos_coach_entry_loaded": true,
+    "pdos_athlete_entry_loaded": true,
+    "scouting_demo_http_status": 200,
+    "private_accounts_accessed": false,
+    "training_records_modified": false,
+    "mobile_viewport_width": 390,
+    "horizontal_page_overflow_detected": false
+  },
+  "published_github_check": {
+    "run_id": 34263194663,
+    "checked_at_utc": "2026-09-08T18:28:47.755Z",
+    "job_result": "success",
+    "anonymous_pages_checked": ["profile", "PDOS portfolio", "Python project"],
+    "all_page_statuses": 200,
+    "all_embedded_product_and_analysis_images_loaded": true,
+    "pdos_and_notebook_profile_links_correct": true,
+    "public_image_source_data_and_chart_resources_checked": 5,
+    "all_checked_public_resource_statuses": 200,
+    "mobile_page_or_markdown_overflow_detected": false,
+    "relative_markdown_target_check": "passed",
+    "visual_review": "Desktop and mobile profile captures and product imagery reviewed. Screenshots are cropped actual public UI, not generated mockups."
+  },
+  "analysis_review": {
+    "offline_tests_passed": 8,
+    "saved_csv_reproduced_byte_for_byte": true,
+    "original_python_blob_sha": "f5b448b30484369002fe2b4dd589b61893dc08f6",
+    "retained_csv_blob_sha": "065930cfaa85c97fe227fa7c50ccdcf0cbd33318",
+    "published_original_python_and_csv_match": true,
+    "public_release_method": "Copy only reviewed files into the existing public profile repository; leave the private lab and its history unchanged.",
+    "reviewed_material": "Original Python script, 30-team public-statistics CSV, regenerated chart, dependency list, new offline helper, regression tests and project documentation.",
+    "scope_limit": "File-content review and selected credential-pattern checks, not a security certification or a full audit of private repository history."
+  },
+  "limitations": [
+    "Dated navigation and rendering evidence, not an uptime guarantee or full application regression.",
+    "No fresh MLB API data pull was required for the retained-data reproduction.",
+    "GitHub account bio, status and pinned-repository settings were not changed."
+  ]
+}

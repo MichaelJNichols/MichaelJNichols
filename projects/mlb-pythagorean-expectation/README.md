@@ -33,7 +33,7 @@ The chart was regenerated from the retained dataset for this publication; it is 
 
 ## Run it
 
-Clone this public repository, then run from the project folder:
+Use **Python 3.13**, the version tested with these pinned dependencies. Clone this public repository, then run from the project folder, preferably in an activated virtual environment:
 
 ```bash
 git clone https://github.com/MichaelJNichols/MichaelJNichols.git
@@ -55,9 +55,9 @@ The original live-fetch command writes to `data/` and `charts/` for the requeste
 
 ## Verification
 
-Eight offline tests cover complete team records, the formula, every retained derived field, ordering and input preservation, invalid input rejection, mocked API mapping, HTTP-error propagation, and chart creation. Offline reproduction regenerated the saved CSV byte-for-byte during the publication review.
+Eight offline tests cover complete team records, the formula, every retained derived field, ordering and input preservation, invalid input rejection, mocked API mapping, HTTP-error propagation, and chart creation. Offline reproduction regenerated the saved CSV byte-for-byte during local and GitHub-hosted publication checks.
 
-Direct dependencies are pinned in `requirements.txt`; local review used Python 3.13.5. This is not a fully locked transitive environment, and plot rasterization can vary between operating systems.
+Direct dependencies are pinned in `requirements.txt`; local review used Python 3.13.5. This is not a fully locked transitive environment, and plot rasterization can vary between operating systems. [Publication review record](../../evidence/2026-09-08-publication-review.json).
 
 ## Contribution and publication
 
