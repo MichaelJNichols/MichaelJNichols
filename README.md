@@ -4,7 +4,7 @@
 
 I build systems that turn complex plans and scattered data into useful decisions. My foundation is **multi-unit leadership at Best Buy and an MBA**. As the founder of **Rogue Baseball Intelligence**, I apply that experience to athlete development, scouting support, and practical workflow automation.
 
-**[PDOS demo](https://demo.roguebaseballiq.com/) · [Scouting Notebook demo](https://roguebaseballiq.com/scouting-demo/) · [Python project](projects/mlb-pythagorean-expectation/) · [LinkedIn](https://www.linkedin.com/in/mjnichols1/)**
+**[PDOS demo](https://demo.roguebaseballiq.com/) · [Scouting Notebook demo](https://roguebaseballiq.com/scouting-demo/) · [Baseball Analytics Lab](#analysis-you-can-inspect) · [LinkedIn](https://www.linkedin.com/in/mjnichols1/)**
 
 ## Working products
 
@@ -34,6 +34,11 @@ A complete Python example comparing all 30 teams' 2025 records with run-based ex
 
 [Read the Python](projects/mlb-pythagorean-expectation/analyze.py) · [Inspect the data](projects/mlb-pythagorean-expectation/data/mlb_pythagorean_2025.csv) · [See the chart](projects/mlb-pythagorean-expectation/charts/mlb_pythagorean_2025.png)
 
+**[Baseball Analytics Lab — Improving MARCEL OPS Projections](projects/sabr3-marcel-projections/)**  
+My completed SABR Analytics Certification Level 3 project in R: adjust a simple OPS baseline using batting components and recent performance. The model beat the baseline in 8 of 10 historical backtest seasons and reduced mean absolute error by approximately 10.6% in the submitted 2021 evaluation.
+
+[Read the case study](projects/sabr3-marcel-projections/) · Public summary of a private lab project, with methods, results, and limitations.
+
 ## Beyond baseball
 
 **[Cozi for ChatGPT](work/cozi-calendar-integration.md)** connects a private family calendar to seven read-only tools for schedules, conflicts, shared free time, and availability. A deployed example of turning an everyday coordination problem into a focused integration.
@@ -49,4 +54,4 @@ I lead problem definition, workflow design, prioritization, and acceptance, usin
 
 ---
 
-*Updated September 8, 2026. Independent projects. Public materials use synthetic or public baseball data; private application source and personal records remain private. PDOS multi-athlete work is in staging, not a commercial launch.*
+*Updated September 11, 2026. Independent projects. Public materials use synthetic or public baseball data; private application source and personal records remain private. PDOS multi-athlete work is in staging, not a commercial launch.*
