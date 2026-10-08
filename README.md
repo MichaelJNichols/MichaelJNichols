@@ -4,9 +4,20 @@
 
 I build systems that turn complex plans and scattered data into useful decisions. My foundation is **multi-unit leadership at Best Buy and an MBA**. As the founder of **Rogue Baseball Intelligence**, I apply that experience to athlete development, scouting support, and practical workflow automation.
 
-**[PDOS demo](https://demo.roguebaseballiq.com/) · [Scouting Notebook demo](https://roguebaseballiq.com/scouting-demo/) · [Baseball Analytics Lab](#analysis-you-can-inspect) · [LinkedIn](https://www.linkedin.com/in/mjnichols1/)**
+**[RogueCount — App Store](https://apps.apple.com/app/roguecount-pitch-counter/id6817076792) · [PDOS demo](https://demo.roguebaseballiq.com/) · [Scouting Notebook demo](https://roguebaseballiq.com/scouting-demo/) · [Baseball Analytics Lab](#analysis-you-can-inspect) · [LinkedIn](https://www.linkedin.com/in/mjnichols1/)**
 
 ## Working products
+
+### <img src="assets/roguecount-icon.png" alt="" width="48" height="48"> RogueCount: Pitch Counter
+
+**Now available on the App Store.** A native iPhone pitch counter for parents and coaches, built around a clear count during the game.
+
+**Free:** One pitcher, pitch counting, undo, daily totals, and age-based rest guidance.  
+**RogueCount Pro:** Multiple pitchers, live strike percentage, outing history, and summary sharing. One-time upgrade; no subscription.
+
+<p><a href="https://apps.apple.com/app/roguecount-pitch-counter/id6817076792"><img src="assets/download-on-the-app-store.svg" alt="Download RogueCount on the App Store" width="132" height="44"></a></p>
+
+[View app details](https://roguebaseballiq.com/#roguecount) · [Support](https://roguebaseballiq.com/roguecount/support)
 
 <table>
 <tr>
@@ -54,4 +65,4 @@ I lead problem definition, workflow design, prioritization, and acceptance, usin
 
 ---
 
-*Updated September 11, 2026. Independent projects. Public materials use synthetic or public baseball data; private application source and personal records remain private. PDOS multi-athlete work is in staging, not a commercial launch.*
+*Updated October 7, 2026. Independent projects. Public materials use synthetic or public baseball data; private application source and personal records remain private. PDOS multi-athlete work is in staging, not a commercial launch.*
