@@ -8,7 +8,7 @@ I build systems that turn complex plans and scattered data into useful decisions
 
 ## Working products
 
-### <img src="assets/roguecount-icon.png" alt="" width="48" height="48"> RogueCount: Pitch Counter
+### <img src="assets/roguecount-icon.png" alt="" width="48" height="48" align="middle"> RogueCount: Pitch Counter
 
 **Now available on the App Store.** A native iPhone pitch counter for parents and coaches, built around a clear count during the game.
 
