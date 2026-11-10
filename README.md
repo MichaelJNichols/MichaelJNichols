@@ -38,6 +38,11 @@ I build systems that turn complex plans and scattered data into useful decisions
 
 *Actual public-demo captures, September 8, 2026. [View larger screenshots and context.](work/product-previews.md)*
 
+## Integration case study
+
+**[From Cozi to GameChanger](work/gamechanger-calendar-integration.md)**  
+I adapted the calendar logic from a Cozi prototype into a private, read-only ChatGPT tool for a youth baseball schedule. The case study shows what carried over, how I added sign-in, and how I tested the deployed connection. The example schedule is fictional.
+
 ## Analysis you can inspect
 
 **[Baseball Analytics Lab — MLB Pythagorean Expectation](projects/mlb-pythagorean-expectation/)**  
@@ -65,4 +70,4 @@ I lead problem definition, workflow design, prioritization, and acceptance, usin
 
 ---
 
-*Updated October 7, 2026. Independent projects. Public materials use synthetic or public baseball data; private application source and personal records remain private. PDOS multi-athlete work is in staging, not a commercial launch.*
+*Updated November 10, 2026. Independent projects. Public materials use synthetic or public baseball data; private application source and personal records remain private. PDOS multi-athlete work is in staging, not a commercial launch.*
